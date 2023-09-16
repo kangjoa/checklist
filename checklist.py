@@ -101,11 +101,8 @@ def test():
     Use this function to verify the correctness of the checklist functions by reviewing print results in the terminal.
     """
     create("purple sox")
-
     create("red cloak")
-
     create("green hat")
-
     create("blue shirt")
     
     # print(read(0))
@@ -125,7 +122,14 @@ def test():
     # # View results
     # list_all_items()
 
-    # print(type(mark_completed(0)))
+    # # View the results
+    # list_all_items()
+
+    # # print(type(mark_completed(0)))
+    # print(mark_completed(1))
+
+    # # View results
+    # list_all_items()
 
     # user_value = user_input("Please Enter a value: ")
     # print(user_value)
