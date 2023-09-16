@@ -1,54 +1,57 @@
 # Initialize checklist
 checklist = list()
 
-def create(item):
-    """
-    What does this do?
 
-    Args:
-        item (_type_): _description_
-    """
-
-def read(index):
+def create(item: str) -> list:
     """
     _summary_
 
-    Args:
-        index (_type_): _description_
+    :param str item: _description_
+    :return list: _description_
     """
+    checklist.append(item)
 
-def update(index, item):
+
+def read(index: int) -> str:
     """
     _summary_
 
-    Args:
-        index (_type_): _description_
-        item (_type_): _description_
+    :param int index: _description_
+    :return str: _description_
     """
+    return checklist[index]
+
+
+def update(index: int, item: str) -> None:
+    """
+    _summary_
+
+    :param int index: _description_
+    :param str item: _description_
+    """
+    checklist[index] = item
+
 
 def destroy(index):
-    """
-    _summary_
-
-    Args:
-        index (_type_): _description_
-    """
+    pass
 
 def list_all_items():
     """
     List all items in list
     """
+    pass
 
 def mark_completed(index):
     pass
 
+
 def user_input(prompt):
     pass
 
-def select(function_code):
 
+def select(function_code):
     if function_code == "C":
-        #Create item in checklist here
+        # Create item in checklist here
         create(item)
 
     elif function_code == "R":
@@ -63,7 +66,7 @@ def select(function_code):
         # This is where we want to stop our loop
         return False
     else:
-        #Catch all
+        # Catch all
         print("Unknown Option")
     return True
 
@@ -74,6 +77,7 @@ def test():
     """
     create("purple sox")
     create("red cloak")
+    print(f"checklist: {checklist}")
 
     print(read(0))
     print(read(1))
@@ -86,13 +90,18 @@ def test():
 
     list_all_items()
 
+
 # Run Tests
 test()
 
-running = True
+# running = True
 
-while running:
-    selection = user_input(
-        "Press C to add to list, R to Read from list, P to display list, and Q to quit"
-    )
-    running = select(selection)
+# while running:
+#     selection = user_input(
+#         "Press C to add to list, R to Read from list, P to display list, and Q to quit"
+#     )
+#     running = select(selection)
+
+# checklist = ['Blue', 'Orange']
+# checklist[1] = 'Cats'
+# print(checklist)
