@@ -57,28 +57,35 @@ def mark_completed(index: int) -> str:
     return "√" + checklist[index]
 
 
-def user_input(prompt):
-    # the input function will display a message in the terminal
-    # and wait for user input.
+def user_input(prompt) -> str:
+    """
+    Display a message in the terminal and wait for user input.
+    :param _type_ prompt: Asks user which CRUD option is wanted.
+    :return str: The user's input as a string.
+    """
     user_input = input(prompt)
     return user_input
 
 
 def select(function_code):
     # Create item
-    if function_code == "C":
-        input_item = user_input("Input item:")
+    if function_code == "C".lower():
+        input_item = user_input("Input item: ")
         create(input_item)
 
     # Read item
-    elif function_code == "R":
-        item_index = user_input("Index Number?")
+    elif function_code == "R".lower():
+        item_index = user_input("Index Number? ")
 
-        # Remember that item_index must actually exist or our program will crash.
-        read(item_index)
+        try:
+            item_index = int(item_index)
+            # Remember that item_index must actually exist or our program will crash.
+            read(item_index)
+        except ValueError:
+            print("Invalid index. Please enter a valid index.")
 
     # Print all items
-    elif function_code == "P":
+    elif function_code == "P".lower():
         list_all_items()
 
     # Catch all
@@ -113,9 +120,8 @@ def test():
 
     print(type(mark_completed(0)))
 
-
-    user_value = user_input("Please Enter a value:")
-    print(user_value)
+    # user_value = user_input("Please Enter a value: ")
+    # print(user_value)
 
 
 # Run Tests
@@ -125,10 +131,6 @@ running = True
 
 while running:
     selection = user_input(
-        "Press C to add to list, R to Read from list, P to display list, and Q to quit"
-    )
+        "Press C to add to list, R to Read from list, P to display list, and Q to quit: "
+    ).lower()
     running = select(selection)
-
-# checklist = ['Blue', 'Orange']
-# checklist[1] = 'Cats'
-# print(checklist)
