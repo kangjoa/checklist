@@ -45,6 +45,7 @@ def list_all_items():
     """
     Iterates over each item in the checklist and prints the clothing item and its corresponding index position.
     """
+    print("\n")
     index = 0
     for list_item in checklist:
         print("{} {}".format(index, list_item))
@@ -66,8 +67,10 @@ def user_input(prompt) -> str:
     :param _type_ prompt: Asks user which CRUD option is wanted.
     :return str: The user's input as a string.
     """
-    initial_user_input = input(prompt)
-    user_input = initial_user_input.strip()
+    # initial_user_input = input(prompt)
+    # user_input = initial_user_input.strip()
+    # return user_input
+    user_input = input(prompt)
     return user_input
 
 
@@ -78,15 +81,38 @@ def select(function_code):
         create(input_item)
 
     # Read item
+    # Remember that item_index must actually exist or our program will crash.
     elif function_code == "R".lower():
         item_index = user_input("Index Number? ")
 
         try:
             item_index = int(item_index)
-            # Remember that item_index must actually exist or our program will crash.
-            read(item_index)
+            result = read(item_index)
+            if result is not None:
+                print("\nItem at index {}: {}".format(item_index, result))
         except ValueError:
-            print("Invalid index. Please enter a valid index.")
+            print("\nInvalid index. Please enter a valid index.")
+
+    # Update item
+    elif function_code == "U".lower():
+        item_index = user_input("Index Number to Update? ")
+        try:
+            item_index = int(item_index)
+            new_item = user_input("New item value? ")
+            update(item_index, new_item)
+            print("\nItem at index {} updated to: {}".format(item_index, new_item))
+        except ValueError:
+            print("\nInvalid index. Please enter a valid index.")
+
+    # Destroy item
+    elif function_code == "D".lower():
+        item_index = user_input("Index Number to Destroy? ")
+        try:
+            item_index = int(item_index)
+            destroy(item_index)
+            print("\nItem at index {} destroyed.".format(item_index))
+        except ValueError:
+            print("\nInvalid index. Please enter a valid index.")
 
     # Print all items
     elif function_code == "P".lower():
@@ -105,7 +131,7 @@ def test():
     create("red cloak")
     create("green hat")
     create("blue shirt")
-    
+
     # print(read(0))
     # print(read(1))
 
@@ -143,7 +169,7 @@ running = True
 
 while running:
     selection = user_input(
-        "Press C to add to list, R to Read from list, P to display list, and Q to quit: "
+        "\nPress\nC to add to list,\nR to Read from list,\nU to Update an item in list,\nD to Destroy (remove) an item,\nP to display list, and\nQ to quit: "
     ).lower()
 
     if selection == "q":
