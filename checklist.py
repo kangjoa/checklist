@@ -17,7 +17,10 @@ def read(index: int) -> str:
     :param int index: Index of the item to retrieve.
     :return str: Clothing item at given index.
     """
-    return checklist[index]
+    if 0 <= index < len(checklist):
+        return checklist[index]
+    else:
+        return "Index out of range. Please enter a valid index."
 
 
 def update(index: int, item: str) -> None:
@@ -118,7 +121,7 @@ def test():
     # View results
     list_all_items()
 
-    print(type(mark_completed(0)))
+    # print(type(mark_completed(0)))
 
     # user_value = user_input("Please Enter a value: ")
     # print(user_value)
