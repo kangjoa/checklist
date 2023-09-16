@@ -104,22 +104,26 @@ def test():
 
     create("red cloak")
 
-    print(read(0))
-    print(read(1))
+    create("green hat")
 
-    update(0, "purple socks")
-    destroy(1)
-
-    print(read(0))
+    create("blue shirt")
+    
+    # print(read(0))
     # print(read(1))
-    # Call your new function with the appropriate value
-    select("C")
-    # View the results
-    list_all_items()
-    # Call function with new value
-    select("R")
-    # View results
-    list_all_items()
+
+    # update(0, "purple socks")
+    # destroy(1)
+
+    # print(read(0))
+    # # print(read(1))
+    # # Call your new function with the appropriate value
+    # select("C")
+    # # View the results
+    # list_all_items()
+    # # Call function with new value
+    # select("R")
+    # # View results
+    # list_all_items()
 
     # print(type(mark_completed(0)))
 
@@ -128,7 +132,7 @@ def test():
 
 
 # Run Tests
-# test()
+test()
 
 running = True
 
@@ -136,4 +140,8 @@ while running:
     selection = user_input(
         "Press C to add to list, R to Read from list, P to display list, and Q to quit: "
     ).lower()
-    running = select(selection)
+
+    if selection == "q":
+        running = False
+    else:
+        select(selection)
