@@ -66,7 +66,8 @@ def user_input(prompt) -> str:
     :param _type_ prompt: Asks user which CRUD option is wanted.
     :return str: The user's input as a string.
     """
-    user_input = input(prompt)
+    initial_user_input = input(prompt)
+    user_input = initial_user_input.strip()
     return user_input
 
 
