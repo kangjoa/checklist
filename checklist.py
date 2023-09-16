@@ -4,10 +4,9 @@ checklist = list()
 
 def create(item: str) -> list:
     """
-    _summary_
-
-    :param str item: _description_
-    :return list: _description_
+    Add an item to the checklist.
+    :param str item: Clothing item to be added.
+    :return list: Checklist with added item.
     """
     checklist.append(item)
 
@@ -30,15 +29,20 @@ def update(index: int, item: str) -> None:
     checklist[index] = item
 
 
-def destroy(index):
-    pass
+def destroy(index: int) -> list:
+    """
+    Remove a clothing item at a given index.
+    :param int index: The index where the item should be removed.
+    :return list: Updated checkist after removing item.
+    """
+    checklist.pop(index)
 
 
 def list_all_items():
     """
     List all items in list
     """
-    pass
+    print(checklist)
 
 
 def mark_completed(index):
@@ -73,22 +77,20 @@ def select(function_code):
 
 def test():
     """
-    _summary_
+    Use this function to verify the correctness of the checklist functions by reviewing print results in the terminal.
     """
     create("purple sox")
+
     create("red cloak")
-    print(f"checklist: {checklist}")
 
     print(read(0))
     print(read(1))
 
     update(0, "purple socks")
-
     destroy(1)
 
     print(read(0))
-
-    list_all_items()
+    # print(read(1))
 
 
 # Run Tests
