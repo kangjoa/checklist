@@ -40,39 +40,50 @@ def destroy(index: int) -> list:
 
 def list_all_items():
     """
-    List all items in list
+    Iterates over each item in the checklist and prints the clothing item and its corresponding index position.
     """
-    print(checklist)
+    index = 0
+    for list_item in checklist:
+        print("{} {}".format(index, list_item))
+        index += 1
 
 
-def mark_completed(index):
-    pass
+def mark_completed(index: int) -> str:
+    """
+    Mark a clothing item as completed by adding a checkmark.
+    :param int index: Index of the item to mark as completed.
+    :return str: Checkmark with the clothing item.
+    """
+    return "√" + checklist[index]
 
 
 def user_input(prompt):
-    pass
+    # the input function will display a message in the terminal
+    # and wait for user input.
+    user_input = input(prompt)
+    return user_input
 
 
 def select(function_code):
+    # Create item
     if function_code == "C":
-        # Create item in checklist here
-        create(item)
+        input_item = user_input("Input item:")
+        create(input_item)
 
+    # Read item
     elif function_code == "R":
-        # Read item in checklist here
-        pass
+        item_index = user_input("Index Number?")
 
+        # Remember that item_index must actually exist or our program will crash.
+        read(item_index)
+
+    # Print all items
     elif function_code == "P":
-        # Print all items here
-        pass
+        list_all_items()
 
-    elif function_code == "Q":
-        # This is where we want to stop our loop
-        return False
+    # Catch all
     else:
-        # Catch all
         print("Unknown Option")
-    return True
 
 
 def test():
@@ -91,6 +102,20 @@ def test():
 
     print(read(0))
     # print(read(1))
+    # Call your new function with the appropriate value
+    select("C")
+    # View the results
+    list_all_items()
+    # Call function with new value
+    select("R")
+    # View results
+    list_all_items()
+
+    print(type(mark_completed(0)))
+
+
+    user_value = user_input("Please Enter a value:")
+    print(user_value)
 
 
 # Run Tests
