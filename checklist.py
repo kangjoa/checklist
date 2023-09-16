@@ -14,20 +14,18 @@ def create(item: str) -> list:
 
 def read(index: int) -> str:
     """
-    _summary_
-
-    :param int index: _description_
-    :return str: _description_
+    Takes an index and returns the clothing item at that index.
+    :param int index: Index of the item to retrieve.
+    :return str: Clothing item at given index.
     """
     return checklist[index]
 
 
 def update(index: int, item: str) -> None:
     """
-    _summary_
-
-    :param int index: _description_
-    :param str item: _description_
+    Update checklist at given index with specified clothing item.
+    :param int index: The index where the item should be updated.
+    :param str item: Clothing item to store in checklist.
     """
     checklist[index] = item
 
@@ -35,11 +33,13 @@ def update(index: int, item: str) -> None:
 def destroy(index):
     pass
 
+
 def list_all_items():
     """
     List all items in list
     """
     pass
+
 
 def mark_completed(index):
     pass
