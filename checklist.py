@@ -121,13 +121,13 @@ def test():
 # Run Tests
 test()
 
-# running = True
+running = True
 
-# while running:
-#     selection = user_input(
-#         "Press C to add to list, R to Read from list, P to display list, and Q to quit"
-#     )
-#     running = select(selection)
+while running:
+    selection = user_input(
+        "Press C to add to list, R to Read from list, P to display list, and Q to quit"
+    )
+    running = select(selection)
 
 # checklist = ['Blue', 'Orange']
 # checklist[1] = 'Cats'
