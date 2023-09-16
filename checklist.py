@@ -15,12 +15,12 @@ def read(index: int) -> str:
     """
     Takes an index and returns the clothing item at that index.
     :param int index: Index of the item to retrieve.
-    :return str: Clothing item at given index.
+    :return str: Clothing item at given index or an error message if the index is out of range.
     """
-    if 0 <= index < len(checklist):
+    try:
         return checklist[index]
-    else:
-        return "Index out of range. Please enter a valid index."
+    except IndexError:
+        return print("Index out of range. Please enter a valid index.")
 
 
 def update(index: int, item: str) -> None:
@@ -128,7 +128,7 @@ def test():
 
 
 # Run Tests
-test()
+# test()
 
 running = True
 
