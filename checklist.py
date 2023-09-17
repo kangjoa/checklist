@@ -73,7 +73,8 @@ def user_input(prompt) -> str:
 
 def select(function_code):
     """
-    Performs CRUDPQ operations based on the inputted function code. If the input is invalid, then "Unknown option" is printed.
+    Performs CRUDPQ operations based on the inputted function code.
+    If the input is invalid, then "Unknown option" is printed. 
     :param _type_ function_code: A single character representing the desired CRUDPQ operation.
     """
     # Create item
@@ -86,7 +87,7 @@ def select(function_code):
     elif function_code == "R".lower():
         valid_index = False
 
-       # Loop until there is a valid index; while valid_index == False
+        # Loop until there is a valid index; while valid_index == False
         while not valid_index:
             item_index = user_input("Index Number? ")
 
@@ -97,7 +98,7 @@ def select(function_code):
                 if result is not None:
                     print("\nItem at index {}: {}".format(item_index, result))
                     # Trigger flag to True to exit the loop
-                    valid_index = True 
+                    valid_index = True
             except ValueError:
                 print("\nInvalid index. Please enter a valid index.")
 
@@ -105,6 +106,7 @@ def select(function_code):
     elif function_code == "U".lower():
         valid_index = False
 
+        # while valid_index == False:
         while not valid_index:
             item_index = user_input("Index Number to Update? ")
             try:
@@ -112,7 +114,9 @@ def select(function_code):
                 if 0 <= item_index < len(checklist):
                     new_item = user_input("New item value (color and clothing)? ")
                     update(item_index, new_item)
-                    print("\nItem at index {} updated to: {}".format(item_index, new_item))
+                    print(
+                        "\nItem at index {} updated to: {}".format(item_index, new_item)
+                    )
                     valid_index = True
                 else:
                     print("\nInvalid index. Please enter a valid index.")
@@ -122,13 +126,22 @@ def select(function_code):
 
     # Destroy item
     elif function_code == "D".lower():
-        item_index = user_input("Index Number to Destroy? ")
-        try:
-            item_index = int(item_index)
-            destroy(item_index)
-            print("\nItem at index {} destroyed.".format(item_index))
-        except ValueError:
-            print("\nInvalid index. Please enter a valid index.")
+        valid_index = False
+
+        # while valid_index == False, keep asking the user
+        while not valid_index:
+            item_index = user_input("Index Number to Destroy? ")
+
+            try:
+                item_index = int(item_index)
+                if 0 <= item_index < len(checklist):
+                    destroy(item_index)
+                    print("\nItem at index {} destroyed.".format(item_index))
+                    valid_index = True
+                else:
+                    print("\nInvalid index. Please enter a valid index.")                    
+            except ValueError:
+                print("\nInvalid index. Please enter a valid index.")
 
     # Print all items
     elif function_code == "P".lower():
