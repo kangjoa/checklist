@@ -86,7 +86,7 @@ def select(function_code):
     elif function_code == "R".lower():
         valid_index = False
 
-        # While index is True
+       # Loop until there is a valid index; while valid_index == False
         while not valid_index:
             item_index = user_input("Index Number? ")
 
@@ -103,14 +103,22 @@ def select(function_code):
 
     # Update item
     elif function_code == "U".lower():
-        item_index = user_input("Index Number to Update? ")
-        try:
-            item_index = int(item_index)
-            new_item = user_input("New item value? ")
-            update(item_index, new_item)
-            print("\nItem at index {} updated to: {}".format(item_index, new_item))
-        except ValueError:
-            print("\nInvalid index. Please enter a valid index.")
+        valid_index = False
+
+        while not valid_index:
+            item_index = user_input("Index Number to Update? ")
+            try:
+                item_index = int(item_index)
+                if 0 <= item_index < len(checklist):
+                    new_item = user_input("New item value (color and clothing)? ")
+                    update(item_index, new_item)
+                    print("\nItem at index {} updated to: {}".format(item_index, new_item))
+                    valid_index = True
+                else:
+                    print("\nInvalid index. Please enter a valid index.")
+                    # flag is NOT triggered to True so will ask user again
+            except ValueError:
+                print("\nInvalid index. Please enter a valid index.")
 
     # Destroy item
     elif function_code == "D".lower():
