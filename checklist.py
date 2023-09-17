@@ -204,6 +204,7 @@ while running:
     ).lower()
 
     if selection == "q":
+        # Exit the loop and stop prompting the user
         running = False
     else:
         select(selection)
