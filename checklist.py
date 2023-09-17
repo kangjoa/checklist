@@ -111,6 +111,7 @@ def select(function_code):
             item_index = user_input("Index Number to Update? ")
             try:
                 item_index = int(item_index)
+                # Check for a valid index 
                 if 0 <= item_index < len(checklist):
                     new_item = user_input("New item value (color and clothing)? ")
                     update(item_index, new_item)
@@ -134,6 +135,7 @@ def select(function_code):
 
             try:
                 item_index = int(item_index)
+                # Check for a valid index 
                 if 0 <= item_index < len(checklist):
                     destroy(item_index)
                     print("\nItem at index {} destroyed.".format(item_index))
