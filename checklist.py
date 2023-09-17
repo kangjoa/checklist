@@ -67,14 +67,15 @@ def user_input(prompt) -> str:
     :param _type_ prompt: Asks user which CRUD option is wanted.
     :return str: The user's input as a string.
     """
-    # initial_user_input = input(prompt)
-    # user_input = initial_user_input.strip()
-    # return user_input
     user_input = input(prompt)
     return user_input
 
 
 def select(function_code):
+    """
+    Performs CRUDPQ operations based on the inputted function code. If the input is invalid, then "Unknown option" is printed.
+    :param _type_ function_code: A single character representing the desired CRUDPQ operation.
+    """
     # Create item
     if function_code == "C".lower():
         input_item = user_input("Input item: ")
@@ -83,15 +84,22 @@ def select(function_code):
     # Read item
     # Remember that item_index must actually exist or our program will crash.
     elif function_code == "R".lower():
-        item_index = user_input("Index Number? ")
+        valid_index = False
 
-        try:
-            item_index = int(item_index)
-            result = read(item_index)
-            if result is not None:
-                print("\nItem at index {}: {}".format(item_index, result))
-        except ValueError:
-            print("\nInvalid index. Please enter a valid index.")
+        # While index is True
+        while not valid_index:
+            item_index = user_input("Index Number? ")
+
+            # Convert user input to an int
+            try:
+                item_index = int(item_index)
+                result = read(item_index)
+                if result is not None:
+                    print("\nItem at index {}: {}".format(item_index, result))
+                    # Trigger flag to True to exit the loop
+                    valid_index = True 
+            except ValueError:
+                print("\nInvalid index. Please enter a valid index.")
 
     # Update item
     elif function_code == "U".lower():
