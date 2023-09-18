@@ -138,7 +138,7 @@ def select(function_code):
                 # Check for a valid index 
                 if 0 <= item_index < len(checklist):
                     destroy(item_index)
-                    print("\nItem at index {} destroyed.".format(item_index))
+                    print("\nItem a t index {} destroyed.".format(item_index))
                     valid_index = True
                 else:
                     print("\nInvalid index. Please enter a valid index.")                    
@@ -149,10 +149,16 @@ def select(function_code):
     elif function_code == "P".lower():
         list_all_items()
 
-    # Catch all
+    # Stop the loop
+    elif function_code == "Q".lower():
+        return False
+
+    # Catch all: if the input is not valid, print this 
     else:
         print("Unknown Option")
 
+    # Continue the for loop for other options
+    return True 
 
 def test():
     """
@@ -203,8 +209,4 @@ while running:
         "\nPress\nC to add to list,\nR to Read from list,\nU to Update an item in list,\nD to Destroy (remove) an item,\nP to display list, and\nQ to quit: "
     ).lower()
 
-    if selection == "q":
-        # Exit the loop and stop prompting the user
-        running = False
-    else:
-        select(selection)
+    running = select(selection)
